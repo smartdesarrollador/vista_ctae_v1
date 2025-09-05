@@ -1,0 +1,157 @@
+<section id="contact" class="cv-section pb-32">
+  <div class="cv-card p-8" data-aos="cv-fade-up" data-aos-delay="1000">
+    <h2 class="cv-section-title">Contacto</h2>
+    
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="animate-pulse text-center cv-spacing-md">
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div *ngFor="let item of [1,2,3]" class="space-y-2">
+          <div class="w-12 h-12 bg-gray-200 rounded-full mx-auto mb-2"></div>
+          <div class="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+          <div class="h-4 bg-gray-200 rounded w-2/3 mx-auto"></div>
+        </div>
+      </div>
+      <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-6"></div>
+      <div class="h-10 bg-gray-200 rounded w-48 mx-auto"></div>
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!isLoading" class="text-center cv-spacing-md">
+      <!-- Contact Information Grid -->
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <!-- Email -->
+        <div class="group cursor-pointer" 
+             (click)="openEmailClient(contactInfo?.email || '')"
+             data-aos="cv-fade-up" 
+             data-aos-delay="1100">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+            <span class="text-2xl">{{ getContactIcon('email') }}</span>
+          </div>
+          <p class="font-semibold text-gray-900 mb-1">Email</p>
+          <p class="text-gray-600 group-hover:text-blue-600 transition-colors duration-200">
+            {{ contactInfo?.email || 'email@ejemplo.com' }}
+          </p>
+          <button 
+            class="mt-2 text-xs text-blue-500 hover:text-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            (click)="$event.stopPropagation(); copyToClipboard(contactInfo?.email || '', 'Email')">
+            📋 Copiar
+          </button>
+        </div>
+        
+        <!-- Phone -->
+        <div class="group cursor-pointer" 
+             (click)="dialPhone(contactInfo?.phone || '')"
+             data-aos="cv-fade-up" 
+             data-aos-delay="1200">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+            <span class="text-2xl">{{ getContactIcon('phone') }}</span>
+          </div>
+          <p class="font-semibold text-gray-900 mb-1">Teléfono</p>
+          <p class="text-gray-600 group-hover:text-green-600 transition-colors duration-200">
+            {{ contactInfo?.phone || '+1 (555) 123-4567' }}
+          </p>
+          <button 
+            class="mt-2 text-xs text-green-500 hover:text-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            (click)="$event.stopPropagation(); copyToClipboard(contactInfo?.phone || '', 'Teléfono')">
+            📋 Copiar
+          </button>
+        </div>
+        
+        <!-- Location -->
+        <div class="group" 
+             data-aos="cv-fade-up" 
+             data-aos-delay="1300">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+            <span class="text-2xl">{{ getContactIcon('location') }}</span>
+          </div>
+          <p class="font-semibold text-gray-900 mb-1">Ubicación</p>
+          <p class="text-gray-600 group-hover:text-purple-600 transition-colors duration-200">
+            {{ contactInfo?.location || 'Ciudad, País' }}
+          </p>
+          <button 
+            class="mt-2 text-xs text-purple-500 hover:text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            (click)="copyToClipboard(contactInfo?.location || '', 'Ubicación')">
+            📋 Copiar
+          </button>
+        </div>
+      </div>
+      
+      <!-- Availability Status -->
+      <div class="mb-8" 
+           data-aos="cv-fade-up" 
+           data-aos-delay="1400">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full">
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span class="text-green-700 font-medium">
+            {{ contactInfo?.availability || 'Disponible para nuevos proyectos' }}
+          </span>
+        </div>
+      </div>
+      
+      <!-- Social Links -->
+      <div *ngIf="contactInfo?.socialLinks" 
+           class="mb-8"
+           data-aos="cv-fade-up" 
+           data-aos-delay="1500">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Sígueme en:</h3>
+        <div class="flex justify-center gap-4 flex-wrap">
+          <a *ngFor="let link of contactInfo?.socialLinks; let i = index" 
+             [href]="link.url" 
+             target="_blank"
+             class="w-12 h-12 bg-gray-100 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-200 hover:text-white hover:transform hover:scale-110 group"
+             [title]="link.platform"
+             [attr.data-aos-delay]="1500 + (i * 50)">
+            <span class="text-lg">{{ link.icon || getContactIcon(link.platform) }}</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Call to Action -->
+      <div data-aos="cv-fade-up" 
+           data-aos-delay="1600">
+        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+          {{ contactInfo?.message || '¿Tienes un proyecto en mente? ¡Me encantaría escuchar sobre él! No dudes en contactarme para discutir cómo podemos trabajar juntos.' }}
+        </p>
+        
+        <button 
+          class="cv-btn-primary text-lg px-8 py-4 group"
+          (click)="onContactClick()">
+          <span class="mr-2 transition-transform group-hover:scale-110">🚀</span>
+          ¡Trabajemos juntos!
+        </button>
+        
+        <!-- Alternative contact methods -->
+        <div class="mt-6 flex justify-center gap-4 flex-wrap">
+          <button *ngIf="contactInfo?.email" 
+                  class="cv-btn-secondary text-sm px-4 py-2 group"
+                  (click)="openEmailClient(contactInfo?.email)">
+            <span class="mr-1 transition-transform group-hover:scale-110">📧</span>
+            Enviar Email
+          </button>
+          
+          <button *ngIf="contactInfo?.phone" 
+                  class="cv-btn-secondary text-sm px-4 py-2 group"
+                  (click)="dialPhone(contactInfo?.phone)">
+            <span class="mr-1 transition-transform group-hover:scale-110">📱</span>
+            Llamar
+          </button>
+          
+          <button *ngIf="contactInfo?.calendlyUrl" 
+                  class="cv-btn-secondary text-sm px-4 py-2 group"
+                  (click)="openCalendly(contactInfo?.calendlyUrl)">
+            <span class="mr-1 transition-transform group-hover:scale-110">📅</span>
+            Agendar Cita
+          </button>
+        </div>
+      </div>
+      
+      <!-- Response Time -->
+      <div *ngIf="contactInfo?.responseTime" 
+           class="mt-8 text-sm text-gray-500"
+           data-aos="cv-fade-up" 
+           data-aos-delay="1700">
+        <p>⏰ Tiempo de respuesta típico: {{ contactInfo?.responseTime }}</p>
+      </div>
+    </div>
+  </div>
+</section>

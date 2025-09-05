@@ -1,0 +1,105 @@
+<section id="about" class="cv-section">
+  <div class="cv-card p-8" data-aos="cv-fade-up" data-aos-delay="200">
+    <h2 class="cv-section-title">Acerca de Mí</h2>
+    
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="animate-pulse">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <div class="h-4 bg-gray-200 rounded w-full"></div>
+          <div class="h-4 bg-gray-200 rounded w-full"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="h-8 bg-gray-200 rounded w-12 mx-auto mb-2"></div>
+            <div class="h-4 bg-gray-200 rounded w-16 mx-auto"></div>
+          </div>
+          <div class="text-center">
+            <div class="h-8 bg-gray-200 rounded w-12 mx-auto mb-2"></div>
+            <div class="h-4 bg-gray-200 rounded w-16 mx-auto"></div>
+          </div>
+          <div class="text-center">
+            <div class="h-8 bg-gray-200 rounded w-12 mx-auto mb-2"></div>
+            <div class="h-4 bg-gray-200 rounded w-16 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!isLoading" class="grid md:grid-cols-2 gap-8">
+      <!-- Description -->
+      <div data-aos="cv-fade-up" data-aos-delay="300">
+        <div class="prose max-w-none">
+          <p class="text-gray-600 leading-relaxed mb-6 text-lg">
+            {{ aboutInfo?.description || 'Descripción del desarrollador cargando...' }}
+          </p>
+          
+          <!-- Additional Info -->
+          <div *ngIf="aboutInfo?.highlights" class="space-y-3">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Puntos Destacados:</h3>
+            <ul class="space-y-2">
+              <li *ngFor="let highlight of aboutInfo?.highlights" 
+                  class="flex items-start gap-3 text-gray-600">
+                <span class="text-blue-500 mt-1 flex-shrink-0">✦</span>
+                <span>{{ highlight }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Statistics -->
+      <div class="cv-spacing-md" data-aos="cv-fade-up" data-aos-delay="400">
+        <div class="grid grid-cols-3 gap-6 text-center">
+          <!-- Years of Experience -->
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 transform hover:scale-105 transition-all duration-300">
+            <div class="text-3xl font-bold text-blue-600 mb-1" 
+                 data-aos="cv-fade-up" 
+                 data-aos-delay="500">
+              {{ aboutInfo?.yearsExperience || 0 }}+
+            </div>
+            <div class="text-sm text-gray-600 font-medium">Años</div>
+            <div class="text-xs text-gray-500 mt-1">Experiencia</div>
+          </div>
+          
+          <!-- Projects Completed -->
+          <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 transform hover:scale-105 transition-all duration-300">
+            <div class="text-3xl font-bold text-green-600 mb-1" 
+                 data-aos="cv-fade-up" 
+                 data-aos-delay="600">
+              {{ aboutInfo?.projectsCompleted || 0 }}+
+            </div>
+            <div class="text-sm text-gray-600 font-medium">Proyectos</div>
+            <div class="text-xs text-gray-500 mt-1">Completados</div>
+          </div>
+          
+          <!-- Clients Satisfied -->
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 transform hover:scale-105 transition-all duration-300">
+            <div class="text-3xl font-bold text-purple-600 mb-1" 
+                 data-aos="cv-fade-up" 
+                 data-aos-delay="700">
+              {{ aboutInfo?.clientsSatisfied || 0 }}+
+            </div>
+            <div class="text-sm text-gray-600 font-medium">Clientes</div>
+            <div class="text-xs text-gray-500 mt-1">Satisfechos</div>
+          </div>
+        </div>
+        
+        <!-- Additional Stats if available -->
+        <div *ngIf="aboutInfo?.additionalStats" 
+             class="mt-6 p-4 bg-gray-50 rounded-xl"
+             data-aos="cv-fade-up" 
+             data-aos-delay="800">
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div *ngFor="let stat of aboutInfo?.additionalStats" class="space-y-1">
+              <div class="text-2xl font-bold text-gray-700">{{ stat.value }}</div>
+              <div class="text-sm text-gray-600">{{ stat.label }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

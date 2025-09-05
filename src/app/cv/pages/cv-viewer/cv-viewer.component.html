@@ -1,0 +1,71 @@
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+  <!-- CV Container -->
+  <div class="cv-container">
+    
+    <!-- Header Component -->
+    <app-cv-header 
+      [personalInfo]="personalInfo"
+      [isLoading]="isLoading"
+      (contactClick)="onContactClick()"
+      (downloadPDF)="onDownloadPDF()">
+    </app-cv-header>
+
+    <!-- About Component -->
+    <app-cv-about 
+      [aboutInfo]="aboutInfo"
+      [isLoading]="isLoading">
+    </app-cv-about>
+
+    <!-- Experience Component -->
+    <app-cv-experience 
+      [experience]="experience"
+      [isLoading]="isLoading">
+    </app-cv-experience>
+
+    <!-- Education Component -->
+    <app-cv-education 
+      [education]="education"
+      [isLoading]="isLoading">
+    </app-cv-education>
+
+    <!-- Skills Component -->
+    <app-cv-skills 
+      [skills]="skills"
+      [isLoading]="isLoading">
+    </app-cv-skills>
+
+    <!-- Projects Component -->
+    <app-cv-projects 
+      [projects]="projects"
+      [isLoading]="isLoading"
+      (projectDemo)="onProjectDemo($event)"
+      (projectGithub)="onProjectGithub($event)">
+    </app-cv-projects>
+
+    <!-- Testimonials Component -->
+    <app-cv-testimonials 
+      [testimonials]="testimonials"
+      [isLoading]="isLoading">
+    </app-cv-testimonials>
+
+    <!-- Contact Component -->
+    <app-cv-contact 
+      [contactInfo]="contactInfo"
+      [isLoading]="isLoading"
+      (contactClick)="onContactClick()">
+    </app-cv-contact>
+
+  </div>
+
+  <!-- Floating Navigation -->
+  <nav class="cv-nav-floating">
+    <div class="cv-nav-dot active" title="Inicio"></div>
+    <div class="cv-nav-dot" title="Acerca de"></div>
+    <div class="cv-nav-dot" title="Experiencia"></div>
+    <div class="cv-nav-dot" title="Educación"></div>
+    <div class="cv-nav-dot" title="Habilidades"></div>
+    <div class="cv-nav-dot" title="Proyectos"></div>
+    <div class="cv-nav-dot" title="Testimonios"></div>
+    <div class="cv-nav-dot" title="Contacto"></div>
+  </nav>
+</div>

@@ -1,0 +1,80 @@
+<section id="header" class="cv-section">
+  <div class="cv-card p-8 text-center" data-aos="cv-fade-up">
+    <!-- Avatar/Logo -->
+    <div class="w-32 h-32 mx-auto mb-6 rounded-full shadow-xl cv-transition cv-hover-scale cv-hover-glow overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+      <img 
+        *ngIf="personalInfo?.profileImage; else initialsTemplate"
+        [src]="personalInfo?.profileImage" 
+        [alt]="personalInfo?.fullName + ' - Foto de perfil'"
+        class="w-full h-full object-cover"
+        (error)="onImageError($event)"
+      />
+      <ng-template #initialsTemplate>
+        <span class="text-white text-4xl font-bold">
+          {{ getInitials(personalInfo?.fullName) }}
+        </span>
+      </ng-template>
+    </div>
+    
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="cv-pulse">
+      <div class="h-8 bg-gray-200 rounded-md w-64 mx-auto mb-4"></div>
+      <div class="h-6 bg-gray-200 rounded-md w-48 mx-auto mb-6"></div>
+    </div>
+    
+    <!-- Content -->
+    <div *ngIf="!isLoading">
+      <!-- Name -->
+      <h1 class="cv-title cv-text-gradient mb-4">
+        {{ personalInfo?.fullName || 'Cargando...' }}
+      </h1>
+      
+      <!-- Title/Position -->
+      <p class="cv-subtitle text-gray-600 mb-2">
+        {{ personalInfo?.title || 'Desarrollador Full Stack' }}
+      </p>
+      
+      <!-- Location -->
+      <p class="text-gray-500 mb-6 flex items-center justify-center gap-2">
+        <span class="text-lg">📍</span>
+        {{ personalInfo?.location || 'Ubicación' }}
+      </p>
+      
+      <!-- Brief Bio -->
+      <p class="text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+        {{ personalInfo?.bio || 'Profesional dedicado con experiencia en desarrollo de software y tecnologías modernas.' }}
+      </p>
+      
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap justify-center gap-4">
+        <button 
+          class="cv-btn-primary cv-touch-button group"
+          (click)="onContactClick()"
+          data-aos="cv-fade-up" 
+          data-aos-delay="200">
+          <span class="mr-2 transition-transform group-hover:scale-110">📧</span>
+          Contactar
+        </button>
+        <button 
+          class="cv-btn-secondary cv-touch-button group"
+          (click)="onDownloadPDF()"
+          data-aos="cv-fade-up" 
+          data-aos-delay="300">
+          <span class="mr-2 transition-transform group-hover:scale-110">📄</span>
+          Descargar PDF
+        </button>
+      </div>
+      
+      <!-- Social Links (if available) -->
+      <div *ngIf="personalInfo?.socialLinks" class="flex justify-center gap-4 mt-6">
+        <a *ngFor="let link of personalInfo?.socialLinks" 
+           [href]="link.url" 
+           target="_blank"
+           class="w-10 h-10 bg-gray-100 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-200 hover:text-white hover:transform hover:scale-110"
+           [title]="link.platform">
+          <span class="text-lg">{{ link.icon || '🔗' }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

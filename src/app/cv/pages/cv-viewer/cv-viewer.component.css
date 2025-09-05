@@ -1,0 +1,156 @@
+/* CV Viewer Component Specific Styles */
+
+.cv-viewer {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Loading State */
+.loading-container {
+  @apply flex items-center justify-center min-h-screen;
+}
+
+.loading-spinner {
+  @apply animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600;
+}
+
+/* Smooth Scrolling Enhancement */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Animations for CV Elements */
+.cv-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.cv-slide-up {
+  transform: translateY(30px);
+  opacity: 0;
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Progress Bar Animation Enhancement */
+.cv-progress-fill {
+  animation: progressExpand 2s ease-out forwards;
+  animation-delay: 0.5s;
+  width: 0;
+}
+
+@keyframes progressExpand {
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* Navigation Dot Hover Effects */
+.cv-nav-dot:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.cv-nav-dot.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Card Hover Effects Enhancement */
+.cv-hover-lift:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Timeline Item Enhancements */
+.cv-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3b82f6, #e5e7eb);
+  z-index: -1;
+}
+
+.cv-timeline-item:last-child::before {
+  background: linear-gradient(to bottom, #3b82f6 0%, #3b82f6 30%, transparent 30%);
+}
+
+/* Button Enhancements */
+.cv-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.cv-btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge Enhancements */
+.cv-badge {
+  transition: all 0.2s ease;
+}
+
+.cv-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .cv-nav-floating {
+    display: none;
+  }
+  
+  .cv-section {
+    @apply py-8 px-4;
+  }
+  
+  .cv-timeline-item {
+    @apply pl-6;
+  }
+  
+  .cv-timeline-dot {
+    @apply w-3 h-3 -left-1.5;
+  }
+}
+
+/* Dark Mode Enhancements */
+.dark .cv-timeline-item::before {
+  background: linear-gradient(to bottom, #3b82f6, #475569);
+}
+
+.dark .cv-timeline-item:last-child::before {
+  background: linear-gradient(to bottom, #3b82f6 0%, #3b82f6 30%, transparent 30%);
+}
+
+/* Print Styles */
+@media print {
+  .cv-nav-floating,
+  .cv-btn-primary,
+  .cv-btn-secondary {
+    display: none;
+  }
+  
+  .cv-section {
+    @apply py-4 px-0;
+    break-inside: avoid;
+  }
+  
+  .cv-card {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+}
