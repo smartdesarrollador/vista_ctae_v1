@@ -97,7 +97,7 @@ export class CvDataService {
         'Mentoré a 12+ desarrolladores junior y semi-senior',
         'Optimicé procesos de desarrollo reduciendo tiempos en 40%',
       ],
-      companyLogo: '/assets/images/companies/enfocus.png',
+      companyLogo: '/assets/images/empresas/logo_enfocus.png',
     },
     {
       id: 2,
@@ -124,7 +124,7 @@ export class CvDataService {
         'Reduje el tiempo de carga de sitios web en 45%',
         'Colaboré con equipos de diseño UX/UI',
       ],
-      companyLogo: '/assets/images/companies/websoluciones.png',
+      companyLogo: '/assets/images/empresas/logo_websoluciones.jpg',
     },
     {
       id: 3,
@@ -142,7 +142,7 @@ export class CvDataService {
         'Colaboré en proyectos de diferentes sectores',
         'Contribuí al crecimiento técnico del equipo',
       ],
-      companyLogo: '/assets/images/companies/webdev-solutions.png',
+      companyLogo: '/assets/images/empresas/logo_empresa.png',
     },
   ];
 
