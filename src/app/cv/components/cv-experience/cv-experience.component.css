@@ -1,0 +1,101 @@
+/* Mobile-specific optimizations for Professional Experience section */
+@media (max-width: 640px) {
+  /* Reduce section padding for maximum width */
+  .cv-section {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Optimize card padding */
+  .cv-card {
+    padding: 0.75rem !important;
+  }
+  
+  /* Reduce timeline dot size */
+  .cv-timeline-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    left: -0.375rem;
+  }
+  
+  /* Adjust timeline item padding */
+  .cv-timeline-item {
+    padding-left: 1.5rem;
+  }
+  
+  /* Minimize left margin for content */
+  .ml-2 {
+    margin-left: 0.25rem;
+  }
+  
+  /* Stack elements vertically on mobile */
+  .flex.flex-wrap.items-center {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  /* Hide decorative bullet on mobile */
+  .text-gray-400.hidden {
+    display: none;
+  }
+}
+
+/* Better text justification for mobile */
+@media (max-width: 768px) {
+  .text-justify {
+    text-align: justify;
+    hyphens: auto;
+    word-wrap: break-word;
+  }
+  
+  /* Improve line height for better readability on mobile */
+  p.text-justify {
+    line-height: 1.5;
+  }
+  
+  /* Optimize badge sizing */
+  .cv-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Improve timeline layout for mobile */
+@media (max-width: 640px) {
+  /* Timeline adjustments */
+  .cv-timeline-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .cv-timeline-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  
+  /* Hide timeline line on mobile for cleaner look */
+  .cv-timeline-item::before {
+    display: none;
+  }
+}
+
+/* Ensure proper text wrapping */
+.cv-badge, span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Better spacing for achievements list */
+@media (max-width: 640px) {
+  .space-y-1 > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  /* Improve list item spacing */
+  li.flex.items-start {
+    align-items: flex-start;
+    line-height: 1.4;
+  }
+}

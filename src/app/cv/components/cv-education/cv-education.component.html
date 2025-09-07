@@ -1,5 +1,5 @@
 <section id="education" class="cv-section">
-  <div class="cv-card p-8" data-aos="cv-fade-up" data-aos-delay="600">
+  <div class="cv-card p-4 sm:p-6 md:p-8" data-aos="cv-fade-up" data-aos-delay="600">
     <h2 class="cv-section-title">Educación y Formación</h2>
     
     <!-- Loading State -->
@@ -24,105 +24,101 @@
 
     <!-- Content -->
     <div *ngIf="!isLoading" class="cv-spacing-md">
-      <!-- Education Timeline -->
+      <!-- Education List -->
       <div class="relative">
-        <!-- Timeline Line -->
-        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 hidden md:block"></div>
         
         <!-- Education Items -->
-        <div class="space-y-8">
+        <div class="space-y-6 sm:space-y-8">
           <div *ngFor="let edu of education; let i = index" 
-               class="relative flex gap-6 group"
+               class="relative group"
                data-aos="cv-fade-up" 
                [attr.data-aos-delay]="700 + (i * 100)">
             
-            <!-- Timeline Icon -->
-            <div class="flex-shrink-0 relative">
-              <div class="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-lg group-hover:scale-110 transition-all duration-300"
-                   [ngClass]="'bg-gradient-to-br ' + getEducationLevelColor(edu.degree)">
-                <span>{{ getEducationTypeIcon(edu.field) }}</span>
-              </div>
-              <!-- Timeline Connector -->
-              <div *ngIf="i < education.length - 1" 
-                   class="absolute top-12 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-300 hidden md:block"></div>
-            </div>
-            
-            <!-- Education Content -->
-            <div class="flex-grow min-w-0">
-              <div class="cv-card p-6 hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
-                <!-- Header -->
-                <div class="mb-4">
-                  <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">
+            <!-- Education Content with Icon Inside -->
+            <div class="cv-card p-3 sm:p-4 md:p-6 hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+              <!-- Header with Icon -->
+              <div class="flex items-start gap-3 sm:gap-4 mb-4">
+                <!-- Timeline Icon -->
+                <div class="flex-shrink-0">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white text-lg sm:text-xl font-bold shadow-lg group-hover:scale-110 transition-all duration-300"
+                       [ngClass]="'bg-gradient-to-br ' + getEducationLevelColor(edu.degree)">
+                    <span>{{ getEducationTypeIcon(edu.field) }}</span>
+                  </div>
+                </div>
+                
+                <!-- Title and Institution -->
+                <div class="flex-grow min-w-0">
+                  <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">
                     {{ edu.degree }}
                   </h3>
-                  <p class="text-lg text-blue-600 font-semibold mb-1">
+                  <p class="text-base sm:text-lg text-blue-600 font-semibold mb-2">
                     {{ edu.institution }}
                   </p>
-                  <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                  <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
                     <span class="flex items-center gap-1">
-                      <span class="text-base">📍</span>
+                      <span class="text-sm sm:text-base">📍</span>
                       {{ edu.location }}
                     </span>
                     <span class="flex items-center gap-1">
-                      <span class="text-base">📅</span>
+                      <span class="text-sm sm:text-base">📅</span>
                       {{ formatDateRange(edu.startDate, edu.endDate) }}
                     </span>
                     <span class="flex items-center gap-1">
-                      <span class="text-base">⏰</span>
+                      <span class="text-sm sm:text-base">⏰</span>
                       {{ calculateDuration(edu.startDate, edu.endDate) }}
                     </span>
                   </div>
                 </div>
-                
-                <!-- Field of Study -->
-                <div *ngIf="edu.field" class="mb-4">
-                  <p class="text-gray-700 font-medium">
-                    <span class="text-purple-600">Especialidad:</span> {{ edu.field }}
-                  </p>
+              </div>
+              
+              <!-- Field of Study -->
+              <div *ngIf="edu.field" class="mb-4">
+                <p class="text-gray-700 font-medium text-sm sm:text-base">
+                  <span class="text-purple-600">Especialidad:</span> {{ edu.field }}
+                </p>
+              </div>
+              
+              <!-- GPA -->
+              <div *ngIf="edu.gpa" class="mb-4">
+                <div class="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 bg-green-50 border border-green-200 rounded-full text-xs sm:text-sm">
+                  <span class="text-green-600 font-semibold">🏆 Calificación:</span>
+                  <span class="text-green-700 font-bold">{{ edu.gpa }}</span>
                 </div>
-                
-                <!-- GPA -->
-                <div *ngIf="edu.gpa" class="mb-4">
-                  <div class="inline-flex items-center gap-2 px-3 py-1 bg-green-50 border border-green-200 rounded-full">
-                    <span class="text-green-600 font-semibold">🏆 Calificación:</span>
-                    <span class="text-green-700 font-bold">{{ edu.gpa }}</span>
-                  </div>
-                </div>
-                
-                <!-- Description -->
-                <div *ngIf="edu.description" class="mb-4">
-                  <p class="text-gray-600 leading-relaxed">
-                    {{ edu.description }}
-                  </p>
-                </div>
-                
-                <!-- Achievements -->
-                <div *ngIf="edu.achievements && edu.achievements.length > 0" class="mb-4">
-                  <h4 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                    <span class="text-yellow-500">⭐</span>
-                    Logros Destacados
-                  </h4>
-                  <ul class="space-y-2">
-                    <li *ngFor="let achievement of edu.achievements" 
-                        class="flex items-start gap-3 text-sm text-gray-600">
-                      <span class="text-yellow-500 mt-0.5 flex-shrink-0">•</span>
-                      <span>{{ achievement }}</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <!-- Relevant Courses or Certifications -->
-                <div *ngIf="edu.relevantCourses && edu.relevantCourses.length > 0" class="mt-4">
-                  <h4 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                    <span class="text-blue-500">📚</span>
-                    Materias Relevantes
-                  </h4>
-                  <div class="flex flex-wrap gap-2">
-                    <span *ngFor="let course of edu.relevantCourses" 
-                          class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full border border-blue-200 hover:bg-blue-100 transition-colors duration-200">
-                      {{ course }}
-                    </span>
-                  </div>
+              </div>
+              
+              <!-- Description -->
+              <div *ngIf="edu.description" class="mb-4">
+                <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  {{ edu.description }}
+                </p>
+              </div>
+              
+              <!-- Achievements -->
+              <div *ngIf="edu.achievements && edu.achievements.length > 0" class="mb-4">
+                <h4 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="text-yellow-500">⭐</span>
+                  Logros Destacados
+                </h4>
+                <ul class="space-y-2">
+                  <li *ngFor="let achievement of edu.achievements" 
+                      class="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600">
+                    <span class="text-yellow-500 mt-0.5 flex-shrink-0">•</span>
+                    <span>{{ achievement }}</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Relevant Courses or Certifications -->
+              <div *ngIf="edu.relevantCourses && edu.relevantCourses.length > 0" class="mt-4">
+                <h4 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="text-blue-500">📚</span>
+                  Materias Relevantes
+                </h4>
+                <div class="flex flex-wrap gap-1 sm:gap-2">
+                  <span *ngFor="let course of edu.relevantCourses" 
+                        class="px-2 sm:px-3 py-1 bg-blue-50 text-blue-700 text-xs sm:text-sm rounded-full border border-blue-200 hover:bg-blue-100 transition-colors duration-200">
+                    {{ course }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -132,29 +128,29 @@
       
       <!-- Education Summary Stats -->
       <div *ngIf="education.length > 0" 
-           class="mt-12 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl"
+           class="mt-8 sm:mt-12 p-4 sm:p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl"
            data-aos="cv-fade-up" 
            data-aos-delay="800">
-        <h3 class="text-lg font-semibold text-gray-900 mb-4 text-center">Resumen Académico</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-4 text-center">Resumen Académico</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
           
           <!-- Total Education Items -->
           <div class="space-y-2">
-            <div class="text-3xl font-bold text-blue-600">{{ education.length }}</div>
-            <div class="text-sm text-gray-600 font-medium">Títulos y Certificaciones</div>
+            <div class="text-2xl sm:text-3xl font-bold text-blue-600">{{ education.length }}</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium">Títulos y Certificaciones</div>
           </div>
           
           <!-- Highest Degree -->
           <div class="space-y-2">
-            <div class="text-3xl">🎓</div>
-            <div class="text-sm text-gray-600 font-medium">Formación Académica</div>
+            <div class="text-2xl sm:text-3xl">🎓</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium">Formación Académica</div>
             <div class="text-xs text-gray-500">Continua</div>
           </div>
           
           <!-- Years of Study -->
           <div class="space-y-2">
-            <div class="text-3xl font-bold text-purple-600">{{ getTotalYearsOfStudy() }}+</div>
-            <div class="text-sm text-gray-600 font-medium">Años de Estudio</div>
+            <div class="text-2xl sm:text-3xl font-bold text-purple-600">{{ getTotalYearsOfStudy() }}+</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium">Años de Estudio</div>
           </div>
           
         </div>

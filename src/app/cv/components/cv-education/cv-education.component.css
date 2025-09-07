@@ -1,0 +1,60 @@
+/* Mobile-specific optimizations for Education section */
+@media (max-width: 640px) {
+  .cv-section {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Reduce card padding on very small screens */
+  .cv-card {
+    padding: 0.75rem !important;
+  }
+  
+  /* Icon size adjustment for mobile */
+  .w-10.h-10 {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Tighter spacing for mobile */
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* Ensure proper text wrapping */
+.min-w-0 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Better spacing for tablets */
+@media (max-width: 768px) and (min-width: 641px) {
+  .space-y-6 > * + * {
+    margin-top: 1.25rem;
+  }
+}
+
+/* Optimize content layout */
+.cv-card .flex.items-start {
+  align-items: flex-start;
+}
+
+/* Ensure icons don't shrink too much */
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* Better mobile typography */
+@media (max-width: 640px) {
+  h3 {
+    font-size: 1rem !important;
+    line-height: 1.25;
+  }
+  
+  p {
+    font-size: 0.875rem !important;
+    line-height: 1.4;
+  }
+}

@@ -1,5 +1,5 @@
 <section id="experience" class="cv-section">
-  <div class="cv-card p-8" data-aos="cv-fade-up" data-aos-delay="400">
+  <div class="cv-card p-4 sm:p-6 md:p-8" data-aos="cv-fade-up" data-aos-delay="400">
     <h2 class="cv-section-title">Experiencia Profesional</h2>
     
     <!-- Loading State -->
@@ -31,29 +31,29 @@
         <div class="cv-timeline-dot group-hover:scale-125 transition-all duration-300 shadow-lg"></div>
         
         <!-- Content -->
-        <div class="ml-4">
+        <div class="ml-2 sm:ml-4">
           <!-- Position & Company -->
           <div class="mb-3">
-            <h3 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">
               {{ exp.position }}
             </h3>
-            <div class="flex flex-wrap items-center gap-3 mb-2">
+            <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
               <!-- Company Logo -->
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-2 sm:gap-3">
                 <div *ngIf="exp.companyLogo" 
-                     class="w-8 h-8 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
+                     class="w-6 h-6 sm:w-8 sm:h-8 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
                   <img [src]="exp.companyLogo" 
                        [alt]="exp.company + ' logo'"
                        class="w-full h-full object-contain">
                 </div>
                 <div *ngIf="!exp.companyLogo" 
-                     class="w-8 h-8 rounded-md bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                  <span class="text-white text-sm font-bold">{{ getCompanyInitials(exp.company) }}</span>
+                     class="w-6 h-6 sm:w-8 sm:h-8 rounded-md bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
+                  <span class="text-white text-xs sm:text-sm font-bold">{{ getCompanyInitials(exp.company) }}</span>
                 </div>
-                <span class="text-blue-600 font-semibold text-lg">{{ exp.company }}</span>
+                <span class="text-blue-600 font-semibold text-base sm:text-lg">{{ exp.company }}</span>
               </div>
-              <span class="text-gray-400">•</span>
-              <div class="flex items-center gap-1">
+              <span class="text-gray-400 hidden sm:inline">•</span>
+              <div class="flex items-center gap-1 text-sm sm:text-base">
                 <span class="text-gray-500">📍</span>
                 <span class="text-gray-600">{{ exp.location }}</span>
               </div>
@@ -61,20 +61,20 @@
           </div>
           
           <!-- Date Range and Duration -->
-          <div class="flex flex-wrap items-center gap-4 mb-3">
-            <div class="flex items-center gap-2 text-gray-500">
-              <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-4 mb-3">
+            <div class="flex items-center gap-1 sm:gap-2 text-gray-500">
+              <div class="w-4 h-4 sm:w-5 sm:h-5 bg-blue-100 rounded-full flex items-center justify-center">
                 <span class="text-xs">📅</span>
               </div>
-              <span class="text-sm font-medium">
+              <span class="text-xs sm:text-sm font-medium">
                 {{ formatDateRange(exp.startDate, exp.endDate) }}
               </span>
             </div>
-            <div class="flex items-center gap-2 text-gray-500">
-              <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
+            <div class="flex items-center gap-1 sm:gap-2 text-gray-500">
+              <div class="w-4 h-4 sm:w-5 sm:h-5 bg-green-100 rounded-full flex items-center justify-center">
                 <span class="text-xs">⏰</span>
               </div>
-              <span class="text-sm">
+              <span class="text-xs sm:text-sm">
                 {{ calculateDuration(exp.startDate, exp.endDate) }}
               </span>
             </div>
@@ -89,25 +89,25 @@
           
           <!-- Description -->
           <div class="mb-4">
-            <p class="text-gray-600 leading-relaxed">{{ exp.description }}</p>
+            <p class="text-gray-600 leading-relaxed text-justify text-sm sm:text-base">{{ exp.description }}</p>
           </div>
           
           <!-- Key Achievements -->
           <div *ngIf="exp.achievements && exp.achievements.length > 0" class="mb-4">
-            <h4 class="font-semibold text-gray-800 mb-2">Logros Destacados:</h4>
+            <h4 class="font-semibold text-gray-800 mb-2 text-sm sm:text-base">Logros Destacados:</h4>
             <ul class="space-y-1">
               <li *ngFor="let achievement of exp.achievements" 
-                  class="flex items-start gap-2 text-sm text-gray-600">
+                  class="flex items-start gap-2 text-xs sm:text-sm text-gray-600">
                 <span class="text-green-500 mt-0.5 flex-shrink-0">✓</span>
-                <span>{{ achievement }}</span>
+                <span class="text-justify">{{ achievement }}</span>
               </li>
             </ul>
           </div>
           
           <!-- Technologies -->
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1 sm:gap-2">
             <span *ngFor="let tech of exp.technologies" 
-                  class="cv-badge cv-badge-primary hover:bg-blue-200 transition-colors duration-200 cursor-default">
+                  class="cv-badge cv-badge-primary hover:bg-blue-200 transition-colors duration-200 cursor-default text-xs sm:text-sm">
               {{ tech }}
             </span>
           </div>
